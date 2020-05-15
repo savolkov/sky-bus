@@ -19,8 +19,12 @@
     "@node-ts/bus-workflow": "^0.5.1",
     "@node-ts/logger-core": "^0.1.0",
     "@node-ts/logger-winston": "^0.1.0",
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
     "inversify": "^5.0.1",
+    "pg": "^8.2.0",
     "reflect-metadata": "^0.1.13",
+    "typeorm": "^0.2.24",
     "uuid": "^7.0.1",
     "winston": "^3.2.1"
   },

@@ -34,5 +34,5 @@ async function runDemo (): Promise<void> {
 initialize()
   .then(runDemo)
   .catch(err => {
-    console.log(err)
+    console.error(err)
   })

@@ -3,7 +3,8 @@
   "compilerOptions": {
     "baseUrl": "./src",
     "noUnusedLocals": false,
-    "noUnusedParameters": false
+    "noUnusedParameters": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
   }
 }
-  
