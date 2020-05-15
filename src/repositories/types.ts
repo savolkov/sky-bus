@@ -1,5 +1,5 @@
 export const TYPE = {
-  AccidentRepository: Symbol("AccidentRepository"),
+  AccidentsRepository: Symbol("AccidentsRepository"),
   AccidentTypesRepository: Symbol("AccidentTypesRepository"),
   UnitsRepository: Symbol("UnitsRepository"),
   ObjectsRepository: Symbol("ObjectsRepository"),

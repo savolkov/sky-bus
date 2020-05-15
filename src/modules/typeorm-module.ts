@@ -1,5 +1,5 @@
 import { AsyncContainerModule } from 'inversify';
-import { getDbConnection } from '../dbConnection';
+import { getDbConnection } from '../repositories/dbConnection';
 import { Repository } from 'typeorm';
 import { Accident } from '../repositories/entities/Accident';
 import { TYPE } from '../repositories/types';
@@ -26,7 +26,7 @@ import { Objects } from '../repositories/entities/Objects';
 const TypeormModule = new AsyncContainerModule(async (bind) => {
   await getDbConnection();
 
-  bind<Repository<Accident>>(TYPE.AccidentRepository).toDynamicValue(() => getAccidentsRepository()).inRequestScope();
+  bind<Repository<Accident>>(TYPE.AccidentsRepository).toDynamicValue(() => getAccidentsRepository()).inRequestScope();
   bind<Repository<AccidentType>>(TYPE.AccidentTypesRepository).toDynamicValue(() => getAccidentTypeRepository()).inRequestScope();
   bind<Repository<ObjectHasObject>>(TYPE.ObjectHasObjectRepository).toDynamicValue(() => getObjectHasObjectRepository()).inRequestScope();
   bind<Repository<Space>>(TYPE.SpacesRepository).toDynamicValue(() => getSpacesRepository()).inRequestScope();
