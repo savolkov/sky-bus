@@ -1,4 +1,4 @@
-export const TYPE = {
+export const REPOSITORIES = {
   AccidentsRepository: Symbol("AccidentsRepository"),
   AccidentTypesRepository: Symbol("AccidentTypesRepository"),
   UnitsRepository: Symbol("UnitsRepository"),
