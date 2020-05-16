@@ -2,7 +2,7 @@ import { AsyncContainerModule } from 'inversify';
 import { getDbConnection } from '../repositories/dbConnection';
 import { Repository } from 'typeorm';
 import { Accident } from '../repositories/entities/Accident';
-import { TYPE } from '../repositories/types';
+import { REPOSITORIES } from '../repositories/types';
 import getAccidentsRepository from '../repositories/AccidentsRepository';
 import getUnitsRepository from '../repositories/UnitsRepository';
 import { Units } from '../repositories/entities/Units';
@@ -26,17 +26,17 @@ import { Objects } from '../repositories/entities/Objects';
 const TypeormModule = new AsyncContainerModule(async (bind) => {
   await getDbConnection();
 
-  bind<Repository<Accident>>(TYPE.AccidentsRepository).toDynamicValue(() => getAccidentsRepository()).inRequestScope();
-  bind<Repository<AccidentType>>(TYPE.AccidentTypesRepository).toDynamicValue(() => getAccidentTypeRepository()).inRequestScope();
-  bind<Repository<ObjectHasObject>>(TYPE.ObjectHasObjectRepository).toDynamicValue(() => getObjectHasObjectRepository()).inRequestScope();
-  bind<Repository<Space>>(TYPE.SpacesRepository).toDynamicValue(() => getSpacesRepository()).inRequestScope();
-  bind<Repository<SpaceType>>(TYPE.SpaceTypesRepository).toDynamicValue(() => getSpaceTypesRepository()).inRequestScope();
-  bind<Repository<States>>(TYPE.StatesRepository).toDynamicValue(() => getStatesRepository()).inRequestScope();
-  bind<Repository<Units>>(TYPE.UnitsRepository).toDynamicValue(() => getUnitsRepository()).inRequestScope();
-  bind<Repository<Variable>>(TYPE.VariablesRepository).toDynamicValue(() => getVariablesRepository()).inRequestScope();
-  bind<Repository<VariableValue>>(TYPE.VariableValuesRepository).toDynamicValue(() => getVariableValuesRepository()).inRequestScope();
+  bind<Repository<Accident>>(REPOSITORIES.AccidentsRepository).toDynamicValue(() => getAccidentsRepository()).inRequestScope();
+  bind<Repository<AccidentType>>(REPOSITORIES.AccidentTypesRepository).toDynamicValue(() => getAccidentTypeRepository()).inRequestScope();
+  bind<Repository<ObjectHasObject>>(REPOSITORIES.ObjectHasObjectRepository).toDynamicValue(() => getObjectHasObjectRepository()).inRequestScope();
+  bind<Repository<Space>>(REPOSITORIES.SpacesRepository).toDynamicValue(() => getSpacesRepository()).inRequestScope();
+  bind<Repository<SpaceType>>(REPOSITORIES.SpaceTypesRepository).toDynamicValue(() => getSpaceTypesRepository()).inRequestScope();
+  bind<Repository<States>>(REPOSITORIES.StatesRepository).toDynamicValue(() => getStatesRepository()).inRequestScope();
+  bind<Repository<Units>>(REPOSITORIES.UnitsRepository).toDynamicValue(() => getUnitsRepository()).inRequestScope();
+  bind<Repository<Variable>>(REPOSITORIES.VariablesRepository).toDynamicValue(() => getVariablesRepository()).inRequestScope();
+  bind<Repository<VariableValue>>(REPOSITORIES.VariableValuesRepository).toDynamicValue(() => getVariableValuesRepository()).inRequestScope();
 
-  bind<Repository<Objects>>(TYPE.ObjectsRepository).toDynamicValue(() => getObjectsRepository()).inRequestScope();
+  bind<Repository<Objects>>(REPOSITORIES.ObjectsRepository).toDynamicValue(() => getObjectsRepository()).inRequestScope();
 });
 
 export default TypeormModule;

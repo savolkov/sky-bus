@@ -1,14 +1,12 @@
 import { ContainerModule } from 'inversify'
 import { bindLogger } from '@node-ts/logger-core'
-import { StartSirenTestHandler } from './start-siren-test-handler'
-import { EmailMaintenanceTeamHandler } from './email-maintenance-team-handler'
+import { MacroscopWarningRecievedHandler } from './macroscop/macroscop-warning-recieved.handler'
 
 export class HandlersModule extends ContainerModule {
 
   constructor () {
     super(bind => {
-      bindLogger(bind, StartSirenTestHandler)
-      bindLogger(bind, EmailMaintenanceTeamHandler)
+      bindLogger(bind, MacroscopWarningRecievedHandler)
     })
   }
 
