@@ -2,6 +2,8 @@ create schema sky;
 
 alter schema sky owner to postgres;
 
+set schema 'sky';
+
 create table "SpaceType"
 (
     "Id" serial not null

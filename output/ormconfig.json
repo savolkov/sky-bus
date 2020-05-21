@@ -1,0 +1,14 @@
+[
+  {
+    "name": "default",
+    "type": "postgres",
+    "host": "127.0.0.1",
+    "port": 5432,
+    "username": "postgres",
+    "password": "1q2w3e",
+    "database": "postgres",
+    "schema": "sky",
+    "synchronize": false,
+    "entities": ["entities/*.js"]
+  }
+]
