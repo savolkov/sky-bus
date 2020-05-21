@@ -2,13 +2,11 @@ import * as express from 'express';
 import {
   interfaces,
   controller,
-  httpGet,
   httpPost,
   request,
   response,
 } from "inversify-express-utils";
 import { inject } from "inversify";
-import { Logger, LOGGER_SYMBOLS } from '@node-ts/logger-core';
 import { Bus, BUS_SYMBOLS } from '@node-ts/bus-core';
 import { MacroscopWarningRecieved } from '../messages';
 
