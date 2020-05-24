@@ -1,4 +1,5 @@
 import { Event } from '@node-ts/bus-messages'
+import { MacroscopWarning } from '../../types/macroscopWarning';
 
 export class MacroscopWarningRecorded extends Event {
 
@@ -11,7 +12,7 @@ export class MacroscopWarningRecorded extends Event {
    * @param message A warning message
    */
   constructor (
-    readonly message: string
+    readonly macroscopEvent: MacroscopWarning
   ) {
     super()
   }
