@@ -14,16 +14,16 @@ export class MacroscopWarningWorkflow extends Workflow<MacroscopWarningWorkflowD
   }
 
   @StartedBy<MacroscopWarningRecieved, MacroscopWarningWorkflowData, 'handlesMacroscopWarningRecieved'>(MacroscopWarningRecieved)
-  handlesMacroscopWarningRecieved ({ message }: MacroscopWarningRecieved): Partial<MacroscopWarningWorkflowData> {
+  handlesMacroscopWarningRecieved ({ macroscopEvent }: MacroscopWarningRecieved): Partial<MacroscopWarningWorkflowData> {
     return {
-      message
+      macroscopEvent
     }
   }
 
   @Handles<MacroscopWarningRecorded, MacroscopWarningWorkflowData, 'handlesMacroscopWarningRecorded'>(
     MacroscopWarningRecorded,
-    event => event.message,
-    'message'
+    event => event.macroscopEvent.accidentName,
+    'macroscopEvent'
   )
   async handlesMacroscopWarningRecorded (_: MacroscopWarningRecorded): Promise<Partial<MacroscopWarningWorkflowData>> {
     return this.complete()
