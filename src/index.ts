@@ -11,8 +11,15 @@ import { ApplicationContainer } from './application-container';
 
 import './endpoints/ping.controller';
 import './endpoints/macroscop.controller';
-import { MacroscopWarningWorkflow, MacroscopWarningWorkflowData } from './workflows';
+import './endpoints/iridium.controller';
+import {
+  IridiumTestWorkflow,
+  IridiumTestWorkflowData,
+  MacroscopWarningWorkflow,
+  MacroscopWarningWorkflowData,
+} from './workflows';
 import { MacroscopWarningRecievedHandler } from './handlers';
+import { IridiumTestRecievedHandler } from './handlers/iridium/iridium-test-recieved.handler';
 
 const container = new ApplicationContainer();
 container.rebind(WINSTON_SYMBOLS.WinstonConfiguration).to(LoggerConfiguration);
@@ -32,10 +39,12 @@ async function initialize(): Promise<void> {
   // bus
   const workflowRegistry = container.get<WorkflowRegistry>(BUS_WORKFLOW_SYMBOLS.WorkflowRegistry);
   workflowRegistry.register(MacroscopWarningWorkflow, MacroscopWarningWorkflowData);
+  workflowRegistry.register(IridiumTestWorkflow, IridiumTestWorkflowData);
   await workflowRegistry.initializeWorkflows();
 
   const bootstrap = container.get<ApplicationBootstrap>(BUS_SYMBOLS.ApplicationBootstrap);
   bootstrap.registerHandler(MacroscopWarningRecievedHandler);
+  bootstrap.registerHandler(IridiumTestRecievedHandler);
 
   await bootstrap.initialize(container);
 }
