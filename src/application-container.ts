@@ -4,8 +4,8 @@ import { LoggerModule } from '@node-ts/logger-core'
 import { WinstonModule } from '@node-ts/logger-winston'
 import { HandlersModule } from './handlers/handlers-module'
 import { BusWorkflowModule } from '@node-ts/bus-workflow'
-import "reflect-metadata";
-import TypeormModule from './modules/typeorm-module';
+import 'reflect-metadata'
+import TypeormModule from './modules/typeorm-module'
 
 export class ApplicationContainer extends Container {
   constructor () {

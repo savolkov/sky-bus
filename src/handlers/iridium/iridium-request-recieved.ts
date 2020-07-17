@@ -12,7 +12,7 @@ import { circularDependencyToException } from 'inversify/dts/utils/serialization
 import { States } from '../../repositories/entities/States'
 
 @HandlesMessage(MacroscopWarningRecieved)
-export class MacroscopWarningRecievedHandler {
+export class IridiumRequestRecieved {
 
   constructor (
     @inject(BUS_SYMBOLS.Bus) private readonly bus: Bus,
@@ -24,62 +24,11 @@ export class MacroscopWarningRecievedHandler {
   ) {
   }
 
-  async handle ({ macroscopEvent }: MacroscopWarningRecieved): Promise<void> {
-    const {
-      accidentsRepository,
-      accidentTypesRepository,
-      objectsRepository,
-      statesRepository
-    } = this
-    this.logger.info(
-      `MacroscopWarningRecieved event received, msg ${macroscopEvent.accidentName}...`,
-      { macroscopEvent }
-    )
-    const draftA = accidentsRepository.create()
-    try {
-      if (!macroscopEvent.accidentTypeId) {
-          let type = await accidentTypesRepository.findOne({ where: { name: macroscopEvent.accidentType} })
-          if (!type) {
-            type = await this.createAccidentType(macroscopEvent.accidentName)
-          }
-          draftA.accidentTypeFk = type
-      } else {
-        const types = await accidentTypesRepository.findByIds([ macroscopEvent.accidentTypeId ])
-        if (types.length !== 0) {
-          draftA.accidentTypeFk = types[0]
-        } else {
-          draftA.accidentTypeFk = await this.createAccidentType(macroscopEvent.accidentName)
-        }
-      }
-
-      if (!macroscopEvent.deviceId) {
-        draftA.objectsFk = await this.createNewDevice(macroscopEvent.deviceName)
-      } else {
-        const objects = await objectsRepository.findByIds([ macroscopEvent.deviceId ])
-        if (objects.length !== 0) {
-          draftA.objectsFk = objects[0]
-        } else {
-          draftA.objectsFk = await this.createNewDevice(macroscopEvent.deviceName)
-        }
-      }
-      this.createNewState(
-        macroscopEvent.deviceState,
-        macroscopEvent.timestamp,
-        draftA.objectsFk
-      )
-      draftA.timestamp = macroscopEvent.timestamp
-      await accidentsRepository.save(draftA)
-    } catch (e) {
-      this.logger.info(e)
-    }
-    await this.bus.publish(new MacroscopWarningRecorded(macroscopEvent))
-  }
-
   private async createAccidentType (
     accidentName: string | undefined,
-    accidentDescription?: string | undefined
+    accidentDescription?: string | undefined,
   ): Promise<AccidentType> {
-    const { accidentTypesRepository } = this
+    const {accidentTypesRepository} = this
     const draftT = accidentTypesRepository.create()
     draftT.description = accidentDescription || 'n/a'
     draftT.name = accidentName || 'n/a'
@@ -87,9 +36,9 @@ export class MacroscopWarningRecievedHandler {
   }
 
   private async createNewDevice (
-    deviceName: string | undefined
+    deviceName: string | undefined,
   ): Promise<Objects> {
-    const { objectsRepository } = this
+    const {objectsRepository} = this
     const draft = objectsRepository.create()
     draft.name = deviceName || 'n/a'
     return objectsRepository.save(draft)
@@ -100,12 +49,63 @@ export class MacroscopWarningRecievedHandler {
     timestamp: Date,
     device: Objects
   ): Promise<States> {
-    const { statesRepository } = this
+    const {statesRepository} = this
     const draft = statesRepository.create()
     draft.name = state || 'unknown'
     draft.timeChanged = timestamp
     draft.objectsFk = device
     return statesRepository.save(draft)
+  }
+
+  async handle ({macroscopEvent}: MacroscopWarningRecieved): Promise<void> {
+    const {
+      accidentsRepository,
+      accidentTypesRepository,
+      objectsRepository,
+      statesRepository,
+    } = this
+    this.logger.info(
+      `MacroscopWarningRecieved event received, msg ${macroscopEvent.accidentName}...`,
+      {macroscopEvent}
+    )
+    const draftA = accidentsRepository.create()
+    try {
+      if (!macroscopEvent.accidentTypeId) {
+        let type = await accidentTypesRepository.findOne({where: {name: macroscopEvent.accidentType}})
+        if (!type) {
+          type = await this.createAccidentType(macroscopEvent.accidentName)
+        }
+        draftA.accidentTypeFk = type
+      } else {
+        let types = await accidentTypesRepository.findByIds([macroscopEvent.accidentTypeId])
+        if (types.length !== 0) {
+          draftA.accidentTypeFk = types[0]
+        } else {
+          draftA.accidentTypeFk = await this.createAccidentType(macroscopEvent.accidentName)
+        }
+      }
+
+      if (!macroscopEvent.deviceId) {
+        draftA.objectsFk = await this.createNewDevice(macroscopEvent.deviceName)
+      } else {
+        let objects = await objectsRepository.findByIds([macroscopEvent.deviceId])
+        if (objects.length !== 0) {
+          draftA.objectsFk = objects[0]
+        } else {
+          draftA.objectsFk = await this.createNewDevice(macroscopEvent.deviceName)
+        }
+      }
+      this.createNewState(
+        macroscopEvent.deviceState,
+        macroscopEvent.timestamp,
+        draftA.objectsFk,
+      )
+      draftA.timestamp = macroscopEvent.timestamp
+      await accidentsRepository.save(draftA)
+    } catch (e) {
+      this.logger.info(e)
+    }
+    await this.bus.publish(new MacroscopWarningRecorded(macroscopEvent))
   }
 
 }
