@@ -7,4 +7,4 @@ export type MacroscopWarning = {
   accidentTypeId?: number,
   accidentType?: number,
   timestamp: Date,
-}
+};

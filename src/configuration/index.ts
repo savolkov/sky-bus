@@ -1,1 +1,1 @@
-export * from './logger-configuration'
+export * from './logger-configuration';
