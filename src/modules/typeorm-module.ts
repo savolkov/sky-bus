@@ -1,6 +1,7 @@
+/* eslint max-len: 0 */
 import { AsyncContainerModule } from 'inversify';
-import { getDbConnection } from '../repositories/dbConnection';
 import { Repository } from 'typeorm';
+import { getDbConnection } from '../repositories/dbConnection';
 import { Accident } from '../repositories/entities/Accident';
 import { REPOSITORIES } from '../repositories/types';
 import getAccidentsRepository from '../repositories/AccidentsRepository';
