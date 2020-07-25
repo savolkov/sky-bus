@@ -1,9 +1,13 @@
 {
-  "name": "@node-ts/bus-starter",
-  "version": "0.0.1",
-  "description": "An empty starter project for @node-ts/bus for writing distributed message based applications with Node",
+  "name": "@sky-telehouse/sky-bus",
+  "version": "1.0.1",
+  "description": "A node-ts/bus extended to use in smart houses",
   "main": "index.js",
-  "repository": "https://github.com/node-ts/bus-starter.git",
+  "repository": "https://github.com/sky-telehouse/sky-bus.git",
+  "author": {
+    "email": "sv@savolkov.tech",
+    "name": "Semyon Volkov"
+  },
   "license": "MIT",
   "scripts": {
     "build": "tsc --project tsconfig.json --outdir dist",
