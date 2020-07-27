@@ -24,8 +24,9 @@ Later: `docker start sky_pg`
 docker network create sky_network
 docker network connect sky_network sky_pg
 docker network connect sky_network sky_pgadm
-docker network inspect sky_network #<-- check pg adress
+docker network inspect sky_network #<-- check pg address
 ```
+8. Apply DDL from `sky-bus/dump.sql` to your database. It restores the nesessary database structure.
 **You are ready to develop.** You can use `yarn dev` to run the bus.
 If you want to run specific version, use docker:
 ```shell script
