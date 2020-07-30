@@ -4,3 +4,5 @@ dist
 .DS_store
 .vscode
 .env
+.DS_store
+.vscode
