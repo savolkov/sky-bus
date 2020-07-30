@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc --project tsconfig.json --outdir dist",
-    "dev": "nodemon --watch ./src -e ts --exec 'yarn dev:rebuild' dist/index.js",
+    "dev": "nodemon --watch ./src -e ts --exec \"yarn dev:rebuild\" dist/index.js",
     "dev:rebuild": "yarn build && node dist/index.js",
     "lint": "eslint ./src/**/*.ts",
     "lint:fix": "yarn lint --fix"

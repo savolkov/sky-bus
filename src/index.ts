@@ -11,8 +11,9 @@ import { ApplicationContainer } from './application-container';
 
 import './endpoints/ping.controller';
 import './endpoints/macroscop.controller';
+import './endpoints/sputnik.controller';
 import { MacroscopWarningWorkflow, MacroscopWarningWorkflowData } from './workflows';
-import { MacroscopWarningRecievedHandler } from './handlers';
+import { MacroscopWarningRecievedHandler, SputnikOpenDoorHandler } from './handlers';
 
 const container = new ApplicationContainer();
 container.rebind(WINSTON_SYMBOLS.WinstonConfiguration).to(LoggerConfiguration);
@@ -27,7 +28,11 @@ async function initialize(): Promise<void> {
   });
 
   const app = server.build();
-  app.listen(3000);
+  const PORT = 3000;
+  app.listen(PORT);
+  console.log('==========================================');
+  console.log(`Server started at http://localhost:${PORT}`);
+  console.log('==========================================\n');
 
   // bus
   const workflowRegistry = container.get<WorkflowRegistry>(BUS_WORKFLOW_SYMBOLS.WorkflowRegistry);
@@ -36,6 +41,7 @@ async function initialize(): Promise<void> {
 
   const bootstrap = container.get<ApplicationBootstrap>(BUS_SYMBOLS.ApplicationBootstrap);
   bootstrap.registerHandler(MacroscopWarningRecievedHandler);
+  bootstrap.registerHandler(SputnikOpenDoorHandler);
 
   await bootstrap.initialize(container);
 }
