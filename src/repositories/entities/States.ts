@@ -5,32 +5,32 @@ import {
   JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
-} from "typeorm";
-import { Objects } from "./Objects";
+} from 'typeorm';
+import { Objects } from './Objects';
 
-@Index("states_id_uindex", ["id"], { unique: true })
-@Index("states_pk", ["id"], { unique: true })
-@Entity("States", { schema: "sky" })
+@Index('states_id_uindex', ['id'], { unique: true })
+@Index('states_pk', ['id'], { unique: true })
+@Entity('States', { schema: 'sky' })
 export class States {
-  @PrimaryGeneratedColumn({ type: "integer", name: "Id" })
+  @PrimaryGeneratedColumn({ type: 'integer', name: 'Id' })
   id: number;
 
-  @Column("character varying", { name: "Name" })
+  @Column('character varying', { name: 'Name' })
   name: string;
 
-  @Column("integer", { name: "Description", nullable: true })
+  @Column('integer', { name: 'Description', nullable: true })
   description: number | null;
 
-  @Column("double precision", { name: "Value", nullable: true, precision: 53 })
+  @Column('double precision', { name: 'Value', nullable: true, precision: 53 })
   value: number | null;
 
-  @Column("timestamp without time zone", {
-    name: "TimeChanged",
+  @Column('timestamp without time zone', {
+    name: 'TimeChanged',
     nullable: true,
   })
   timeChanged: Date | null;
 
   @ManyToOne(() => Objects, (objects) => objects.states)
-  @JoinColumn([{ name: "Objects_fk", referencedColumnName: "id" }])
+  @JoinColumn([{ name: 'Objects_fk', referencedColumnName: 'id' }])
   objectsFk: Objects;
 }
