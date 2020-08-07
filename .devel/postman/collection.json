@@ -1,21 +1,56 @@
 {
 	"info": {
-		"_postman_id": "14fd0f04-029c-4a13-b91f-516c521bf266",
+		"_postman_id": "db5d4d25-06b8-4c30-ae7e-ea6b3276a9dc",
 		"name": "SKY: Bus",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "sputnik",
+			"item": [
+				{
+					"name": "open door",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuid\": \"xxx-xxx-yyy\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sky_bus_url}}/sputnik/open",
+							"host": [
+								"{{sky_bus_url}}"
+							],
+							"path": [
+								"sputnik",
+								"open"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
 		{
 			"name": "ping pong",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost:3000/ping",
+					"raw": "{{sky_bus_url}}/ping",
 					"host": [
-						"localhost"
+						"{{sky_bus_url}}"
 					],
-					"port": "3000",
 					"path": [
 						"ping"
 					]

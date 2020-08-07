@@ -13,13 +13,7 @@ export class MacroscopWarningWorkflow extends Workflow<MacroscopWarningWorkflowD
   }
 
   @StartedBy<MacroscopWarningRecieved, MacroscopWarningWorkflowData, 'handlesMacroscopWarningRecieved'>(MacroscopWarningRecieved)
-<<<<<<< HEAD
-  handlesMacroscopWarningRecieved(
-    { macroscopEvent }: MacroscopWarningRecieved,
-  ): Partial<MacroscopWarningWorkflowData> {
-=======
   handlesMacroscopWarningRecieved({ macroscopEvent }: MacroscopWarningRecieved): Partial<MacroscopWarningWorkflowData> {
->>>>>>> Add: basic integration with Sputnik && eslint auto fix
     return {
       macroscopEvent,
     };
@@ -30,11 +24,7 @@ export class MacroscopWarningWorkflow extends Workflow<MacroscopWarningWorkflowD
     (event) => event.macroscopEvent.accidentName,
     'macroscopEvent',
   )
-<<<<<<< HEAD
-  async handlesMacroscopWarningRecorded(): Promise<Partial<MacroscopWarningWorkflowData>> {
-=======
   async handlesMacroscopWarningRecorded(_: MacroscopWarningRecorded): Promise<Partial<MacroscopWarningWorkflowData>> {
->>>>>>> Add: basic integration with Sputnik && eslint auto fix
     return this.complete();
   }
 }

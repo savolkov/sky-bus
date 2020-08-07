@@ -2,7 +2,8 @@ import { HandlesMessage, BUS_SYMBOLS, Bus } from '@node-ts/bus-core';
 import { inject } from 'inversify';
 import { LOGGER_SYMBOLS, Logger } from '@node-ts/logger-core';
 import { SputnikOpenDoor } from '../../messages';
-import { SputnikApi } from '../../libs/sputnikApi';
+import { SputnikAdapter } from '../../adapters/sputnik';
+import { SputnikApi } from '../../libs/api/sputnik';
 
 @HandlesMessage(SputnikOpenDoor)
 export class SputnikOpenDoorHandler {
@@ -12,14 +13,19 @@ export class SputnikOpenDoorHandler {
   ) {
   }
 
-  async handle(sputnikEvent: SputnikOpenDoor): Promise<void> {
+  async handle(sputnikEvent: SputnikDoorTriedToOpen): Promise<void> {
     this.logger.info(
       `SputnikOpenDoor event received, device uuid: ${sputnikEvent.sputnikEvent.deviceUuid}\n`,
       sputnikEvent,
     );
 
     const sputnikApi = new SputnikApi(sputnikEvent.sputnikEvent.token);
-    const res = await sputnikApi.openDoor(sputnikEvent.sputnikEvent.deviceUuid);
-    console.log('response from sputnik api: ', res);
+    const sputnikAdapter = new SputnikAdapter(sputnikApi);
+    const res = await sputnikAdapter.openDoor(sputnikEvent.sputnikEvent.deviceUuid);
+    
+    this.logger.info(
+      `Sputnik api response`,
+      res,
+    );
   }
 }

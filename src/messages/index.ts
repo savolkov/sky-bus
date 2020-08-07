@@ -1,2 +1,2 @@
 export * from './macroscop/macroscop-warning-recieved.event';
-export * from './sputnik/open-door.event';
+export * from './sputnik/openDoor.event';

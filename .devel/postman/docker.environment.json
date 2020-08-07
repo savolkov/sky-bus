@@ -1,0 +1,14 @@
+{
+	"id": "64ea198b-6a12-4edd-9123-c533c979e21a",
+	"name": "docker",
+	"values": [
+		{
+			"key": "sky_bus_url",
+			"value": "http://localhost:3000",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-08-05T13:21:17.937Z",
+	"_postman_exported_using": "Postman/7.17.0"
+}
