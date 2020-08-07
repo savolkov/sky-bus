@@ -1,4 +1,4 @@
-import { Workflow, StartedBy, Handles } from '@node-ts/bus-workflow';
+import { Workflow, StartedBy } from '@node-ts/bus-workflow';
 import { inject } from 'inversify';
 import { BUS_SYMBOLS, Bus } from '@node-ts/bus-core';
 import { SputnikOpenDoorCommandData } from './sputnik-open-door.workflow.data';
@@ -12,7 +12,7 @@ export class SputnikOpenDoorWorkflow extends Workflow<SputnikOpenDoorCommandData
   }
 
   @StartedBy<SputnikOpenDoor, SputnikOpenDoorCommandData, 'handlesSputnikOpenDoor'>(SputnikOpenDoor)
-  handlesSputnikOpenDoor({ sputnikEvent }: SputnikOpenDoor): Partial<SputnikOpenDoorCommandData> {
+  handlesSputnikOpenDoor(): Partial<SputnikOpenDoorCommandData> {
     return this.complete();
   }
 }

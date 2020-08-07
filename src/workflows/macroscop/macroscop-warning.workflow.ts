@@ -13,7 +13,9 @@ export class MacroscopWarningWorkflow extends Workflow<MacroscopWarningWorkflowD
   }
 
   @StartedBy<MacroscopWarningRecieved, MacroscopWarningWorkflowData, 'handlesMacroscopWarningRecieved'>(MacroscopWarningRecieved)
-  handlesMacroscopWarningRecieved({ macroscopEvent }: MacroscopWarningRecieved): Partial<MacroscopWarningWorkflowData> {
+  handlesMacroscopWarningRecieved(
+    { macroscopEvent }: MacroscopWarningRecieved,
+  ): Partial<MacroscopWarningWorkflowData> {
     return {
       macroscopEvent,
     };
@@ -24,7 +26,7 @@ export class MacroscopWarningWorkflow extends Workflow<MacroscopWarningWorkflowD
     (event) => event.macroscopEvent.accidentName,
     'macroscopEvent',
   )
-  async handlesMacroscopWarningRecorded(_: MacroscopWarningRecorded): Promise<Partial<MacroscopWarningWorkflowData>> {
+  async handlesMacroscopWarningRecorded(): Promise<Partial<MacroscopWarningWorkflowData>> {
     return this.complete();
   }
 }

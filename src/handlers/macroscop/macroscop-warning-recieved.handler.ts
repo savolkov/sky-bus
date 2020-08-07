@@ -2,7 +2,6 @@ import { HandlesMessage, BUS_SYMBOLS, Bus } from '@node-ts/bus-core';
 import { inject } from 'inversify';
 import { LOGGER_SYMBOLS, Logger } from '@node-ts/logger-core';
 import { Repository } from 'typeorm';
-import { circularDependencyToException } from 'inversify/dts/utils/serialization';
 import { MacroscopWarningRecieved } from '../../messages';
 import { REPOSITORIES } from '../../repositories/types';
 import { Accident } from '../../repositories/entities/Accident';
@@ -16,8 +15,10 @@ export class MacroscopWarningRecievedHandler {
   constructor(
     @inject(BUS_SYMBOLS.Bus) private readonly bus: Bus,
     @inject(LOGGER_SYMBOLS.Logger) private readonly logger: Logger,
-    @inject(REPOSITORIES.AccidentsRepository) private readonly accidentsRepository: Repository<Accident>,
-    @inject(REPOSITORIES.AccidentTypesRepository) private readonly accidentTypesRepository: Repository<AccidentType>,
+    @inject(REPOSITORIES.AccidentsRepository)
+    private readonly accidentsRepository: Repository<Accident>,
+    @inject(REPOSITORIES.AccidentTypesRepository)
+    private readonly accidentTypesRepository: Repository<AccidentType>,
     @inject(REPOSITORIES.ObjectsRepository) private readonly objectsRepository: Repository<Objects>,
     @inject(REPOSITORIES.StatesRepository) private readonly statesRepository: Repository<States>,
   ) {
@@ -61,7 +62,6 @@ export class MacroscopWarningRecievedHandler {
       accidentsRepository,
       accidentTypesRepository,
       objectsRepository,
-      statesRepository,
     } = this;
     this.logger.info(
       `MacroscopWarningRecieved event received, msg ${macroscopEvent.accidentName}...`,
@@ -70,7 +70,8 @@ export class MacroscopWarningRecievedHandler {
     const draftA = accidentsRepository.create();
     try {
       if (!macroscopEvent.accidentTypeId) {
-        let type = await accidentTypesRepository.findOne({ where: { name: macroscopEvent.accidentType } });
+        let type = await accidentTypesRepository
+          .findOne({ where: { name: macroscopEvent.accidentType } });
         if (!type) {
           type = await this.createAccidentType(macroscopEvent.accidentName);
         }
@@ -78,7 +79,7 @@ export class MacroscopWarningRecievedHandler {
       } else {
         const types = await accidentTypesRepository.findByIds([macroscopEvent.accidentTypeId]);
         if (types.length !== 0) {
-          draftA.accidentTypeFk = types[0];
+          [draftA.accidentTypeFk] = types;
         } else {
           draftA.accidentTypeFk = await this.createAccidentType(macroscopEvent.accidentName);
         }
@@ -89,7 +90,7 @@ export class MacroscopWarningRecievedHandler {
       } else {
         const objects = await objectsRepository.findByIds([macroscopEvent.deviceId]);
         if (objects.length !== 0) {
-          draftA.objectsFk = objects[0];
+          [draftA.objectsFk] = objects;
         } else {
           draftA.objectsFk = await this.createNewDevice(macroscopEvent.deviceName);
         }
