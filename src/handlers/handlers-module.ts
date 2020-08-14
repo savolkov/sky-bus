@@ -4,6 +4,7 @@ import { MacroscopWarningRecievedHandler } from './macroscop/macroscop-warning-r
 import { SputnikOpenDoorHandler } from './sputnik/openDoor.handler';
 import { SputnikDoorOpenedHandler } from './sputnik/doorOpened.handler';
 import { SputnikOpenDoorErrorHandler } from './sputnik/openDoorError.handler';
+import { IridiumTestRecievedHandler } from './iridium/iridium-test-recieved.handler';
 
 export class HandlersModule extends ContainerModule {
   constructor() {
@@ -12,6 +13,7 @@ export class HandlersModule extends ContainerModule {
       bindLogger(bind, SputnikOpenDoorHandler);
       bindLogger(bind, SputnikDoorOpenedHandler);
       bindLogger(bind, SputnikOpenDoorErrorHandler);
+      bindLogger(bind, IridiumTestRecievedHandler);
     });
   }
 }
