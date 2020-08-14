@@ -15,14 +15,16 @@ class SputnikApi {
 
   public async openDoor(uuid: string) {
     let res = { data: {} };
-    try {
-      res = await this.api.get(`/account/devices/intercoms/${uuid}/open_door`);
-    } catch (err) {
-      // TODO: add typed errors
-      return err.response.data;
-    }
+    // try {
+    res = await this.api.get(`/account/devices/intercoms/${uuid}/open_door`);
+    // } catch (err) {
+    // TODO: add typed errors
+    //   console.log(err)
 
-    return res.data;
+    //   return err.response.data;
+    // }
+
+    return res;
   }
 }
 

@@ -12,19 +12,26 @@ export class MacroscopWarningWorkflow extends Workflow<MacroscopWarningWorkflowD
     super();
   }
 
+  // eslint-disable-next-line max-len
   @StartedBy<MacroscopWarningRecieved, MacroscopWarningWorkflowData, 'handlesMacroscopWarningRecieved'>(MacroscopWarningRecieved)
-  handlesMacroscopWarningRecieved({ macroscopEvent }: MacroscopWarningRecieved): Partial<MacroscopWarningWorkflowData> {
+  handlesMacroscopWarningRecieved(
+    { macroscopEvent }: MacroscopWarningRecieved,
+  ): Partial<MacroscopWarningWorkflowData> {
     return {
       macroscopEvent,
     };
   }
 
+  // eslint-disable-next-line max-len
   @Handles<MacroscopWarningRecorded, MacroscopWarningWorkflowData, 'handlesMacroscopWarningRecorded'>(
     MacroscopWarningRecorded,
     (event) => event.macroscopEvent.accidentName,
     'macroscopEvent',
   )
-  async handlesMacroscopWarningRecorded(_: MacroscopWarningRecorded): Promise<Partial<MacroscopWarningWorkflowData>> {
+  async handlesMacroscopWarningRecorded(
+    _: MacroscopWarningRecorded, // eslint-disable-line @typescript-eslint/no-unused-vars
+  ):
+    Promise<Partial<MacroscopWarningWorkflowData>> {
     return this.complete();
   }
 }

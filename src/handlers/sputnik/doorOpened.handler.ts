@@ -16,5 +16,7 @@ export class SputnikDoorOpenedHandler {
       `SputnikDoorOpened event received, device uuid: ${sputnikEvent.sputnikEvent.deviceUuid}\n`,
       sputnikEvent,
     );
+
+    // TODO: send command for iridium action
   }
 }

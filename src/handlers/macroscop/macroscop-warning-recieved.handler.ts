@@ -2,10 +2,6 @@ import { HandlesMessage, BUS_SYMBOLS, Bus } from '@node-ts/bus-core';
 import { inject } from 'inversify';
 import { LOGGER_SYMBOLS, Logger } from '@node-ts/logger-core';
 import { Repository } from 'typeorm';
-<<<<<<< HEAD
-=======
-import { circularDependencyToException } from 'inversify/dts/utils/serialization';
->>>>>>> Add: basic integration with Sputnik && eslint auto fix
 import { MacroscopWarningRecieved } from '../../messages';
 import { REPOSITORIES } from '../../repositories/types';
 import { Accident } from '../../repositories/entities/Accident';
@@ -74,12 +70,8 @@ export class MacroscopWarningRecievedHandler {
     const draftA = accidentsRepository.create();
     try {
       if (!macroscopEvent.accidentTypeId) {
-<<<<<<< HEAD
         let type = await accidentTypesRepository
           .findOne({ where: { name: macroscopEvent.accidentType } });
-=======
-        let type = await accidentTypesRepository.findOne({ where: { name: macroscopEvent.accidentType } });
->>>>>>> Add: basic integration with Sputnik && eslint auto fix
         if (!type) {
           type = await this.createAccidentType(macroscopEvent.accidentName);
         }

@@ -9,8 +9,8 @@ export class SputnikOpenDoorError extends Event {
   readonly $version = 0;
 
   /**
-   * Event 
-   * @param message 
+   * Event
+   * @param message
    */
   constructor(
     readonly sputnikEvent: SputnikDoorTriedToOpen,

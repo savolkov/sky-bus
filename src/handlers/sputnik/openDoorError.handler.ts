@@ -1,7 +1,7 @@
 import { HandlesMessage, BUS_SYMBOLS, Bus } from '@node-ts/bus-core';
 import { inject } from 'inversify';
 import { LOGGER_SYMBOLS, Logger } from '@node-ts/logger-core';
-import { SputnikOpenDoorError } from 'messages/sputnik/openDoorError.event';
+import { SputnikOpenDoorError } from '../../messages/sputnik/openDoorError.event';
 
 @HandlesMessage(SputnikOpenDoorError)
 export class SputnikOpenDoorErrorHandler {

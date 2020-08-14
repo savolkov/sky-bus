@@ -13,7 +13,12 @@ import './endpoints/ping.controller';
 import './endpoints/macroscop.controller';
 import './endpoints/sputnik.controller';
 import { MacroscopWarningWorkflow, MacroscopWarningWorkflowData } from './workflows';
-import { MacroscopWarningRecievedHandler, SputnikOpenDoorHandler } from './handlers';
+import {
+  MacroscopWarningRecievedHandler,
+  SputnikOpenDoorHandler,
+  SputnikDoorOpenedHandler,
+  SputnikOpenDoorErrorHandler,
+} from './handlers';
 
 const container = new ApplicationContainer();
 container.rebind(WINSTON_SYMBOLS.WinstonConfiguration).to(LoggerConfiguration);
@@ -42,6 +47,8 @@ async function initialize(): Promise<void> {
   const bootstrap = container.get<ApplicationBootstrap>(BUS_SYMBOLS.ApplicationBootstrap);
   bootstrap.registerHandler(MacroscopWarningRecievedHandler);
   bootstrap.registerHandler(SputnikOpenDoorHandler);
+  bootstrap.registerHandler(SputnikDoorOpenedHandler);
+  bootstrap.registerHandler(SputnikOpenDoorErrorHandler);
 
   await bootstrap.initialize(container);
 }
