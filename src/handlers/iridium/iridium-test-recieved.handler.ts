@@ -2,7 +2,7 @@ import { HandlesMessage, BUS_SYMBOLS, Bus } from '@node-ts/bus-core';
 import { inject } from 'inversify';
 import { LOGGER_SYMBOLS, Logger } from '@node-ts/logger-core';
 import axios from 'axios';
-import { IridiumTestPassedEvent, } from '../../messages/iridium/iridium-test-passed.event';
+import { IridiumTestPassedEvent } from '../../messages/iridium/iridium-test-passed.event';
 import { IridiumTestRecievedEvent } from '../../messages/iridium/iridium-test-recieved.event';
 
 @HandlesMessage(IridiumTestRecievedEvent)
@@ -34,13 +34,13 @@ export class IridiumTestRecievedHandler {
       };
     }
 
-    axios.post('localhost:1234', data)
-      .then((res) => {
-        this.logger.info(res.data);
-        this.bus.publish(new IridiumTestPassedEvent(iridiumEvent));
-      })
-      .catch((e) => {
-        this.logger.error(e);
-      });
+    try {
+      const result = await axios.post('localhost:1234', data);
+      this.logger.info(result.data);
+      this.bus.publish(new IridiumTestPassedEvent(iridiumEvent));
+    } catch (err) {
+      console.log(err);
+      this.logger.error(err);
+    }
   }
 }

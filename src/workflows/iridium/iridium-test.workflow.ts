@@ -2,7 +2,7 @@ import { Workflow, StartedBy, Handles } from '@node-ts/bus-workflow';
 import { inject } from 'inversify';
 import { BUS_SYMBOLS, Bus } from '@node-ts/bus-core';
 import { IridiumTestWorkflowData } from './iridium-test.workflow.data';
-import {   IridiumTestPassedEvent} from '../../messages/iridium/iridium-test-passed.event';
+import { IridiumTestPassedEvent } from '../../messages/iridium/iridium-test-passed.event';
 import { IridiumTestRecievedEvent } from '../../messages/iridium/iridium-test-recieved.event';
 
 export class IridiumTestWorkflow extends Workflow<IridiumTestWorkflowData> {
