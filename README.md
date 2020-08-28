@@ -46,3 +46,73 @@ If you want to run specific version, use docker:
 docker pull savolkov/sky-bus
 docker run -p 3000:3000 --name sky_bus -d savolkov/sky-bus
 ```
+
+# API Docs 
+
+## Sputkin
+
+### Open door
+
+`POST` /open
+
+Body description
+```json
+{
+   uuid: "entryphone id"
+}
+```
+
+Body example
+```json
+{
+   uuid: "xxxx-xxxx-xxxx"
+}
+```
+
+### Set people inform
+
+`POST` /inform
+
+Body description
+```json
+{
+   uuid: "entryphone id"
+   dateFrom: "", 
+   dateEnd: "", 
+   audioFileUrl: ""
+}
+```
+
+Body example
+```json
+{
+   uuid: "xxxx-xxxx-xxxx"
+   dateFrom: "2018-08-09T18:31:42", 
+   dateEnd: "2018-08-09T18:31:42", 
+   audioFileUrl: "https://some.file.mp3"
+}
+```
+
+### Set people poll
+
+`POST` /inform
+
+Body description
+```json
+{
+   uuid: "entryphone id"
+   dateFrom: "", 
+   dateEnd: "", 
+   audioFileUrl: ""
+}
+```
+
+Body example
+```json
+{
+   uuid: "xxxx-xxxx-xxxx"
+   dateFrom: "2018-08-09T18:31:42", 
+   dateEnd: "2018-08-09T18:31:42", 
+   audioFileUrl: "https://some.file.mp3"
+}
+```

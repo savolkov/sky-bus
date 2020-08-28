@@ -6,3 +6,4 @@ dist
 .env
 .DS_store
 .vscode
+.todo
