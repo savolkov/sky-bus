@@ -1,20 +1,50 @@
 {
 	"info": {
-		"_postman_id": "14fd0f04-029c-4a13-b91f-516c521bf266",
+		"_postman_id": "30c15712-6449-4e76-9e01-971f02e69eb6",
 		"name": "SKY: Bus",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
+			"name": "sassin",
+			"item": [
+				{
+					"name": "change line state",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"lineNumber\": \"1\", \n    \"state\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sky_bus_url}}/sassin/change-line-state",
+							"host": [
+								"{{sky_bus_url}}"
+							],
+							"path": [
+								"sassin",
+								"change-line-state"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "sputnik",
 			"item": [
 				{
 					"name": "open door",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",

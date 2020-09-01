@@ -34,7 +34,6 @@ export class SputnikController implements interfaces.Controller {
     }
   }
 
-  // TODO:
   // Inform people with audio file in selected time
   @httpPost('/inform')
   private async inform(@request() req: express.Request, @response() res: express.Response) {

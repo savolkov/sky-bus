@@ -12,20 +12,26 @@ import { ApplicationContainer } from './application-container';
 import './endpoints/ping.controller';
 import './endpoints/macroscop.controller';
 import './endpoints/sputnik.controller';
+import './endpoints/sassin.controller';
 import {
   MacroscopWarningRecievedHandler,
-  SputnikOpenDoorHandler,
-  SputnikDoorOpenedHandler,
-  SputnikOpenDoorErrorHandler,
 } from './handlers';
+
+import { SputnikOpenDoorHandler } from './handlers/sputnik/openDoor.handler';
+
 import './endpoints/iridium.controller';
 import {
-  IridiumTestWorkflow,
-  IridiumTestWorkflowData,
   MacroscopWarningWorkflow,
   MacroscopWarningWorkflowData,
 } from './workflows';
+
+import { IridiumTestWorkflow } from './workflows/iridium/iridium-test.workflow';
+import { IridiumTestWorkflowData } from './workflows/iridium/iridium-test.workflow.data';
+
 import { IridiumTestRecievedHandler } from './handlers/iridium/iridium-test-recieved.handler';
+import { SassinChangeLineStateHandler } from './handlers/sassin/changeLineState.handler';
+import { SassinLineStateChangedHandler } from './handlers/sassin/lineStateChanged.handler';
+import { SassinLineStateChangeErrorHandler } from './handlers/sassin/lineStateChangeError.handler';
 
 const container = new ApplicationContainer();
 container.rebind(WINSTON_SYMBOLS.WinstonConfiguration).to(LoggerConfiguration);
@@ -55,9 +61,10 @@ async function initialize(): Promise<void> {
   const bootstrap = container.get<ApplicationBootstrap>(BUS_SYMBOLS.ApplicationBootstrap);
   bootstrap.registerHandler(MacroscopWarningRecievedHandler);
   bootstrap.registerHandler(SputnikOpenDoorHandler);
-  bootstrap.registerHandler(SputnikDoorOpenedHandler);
-  bootstrap.registerHandler(SputnikOpenDoorErrorHandler);
   bootstrap.registerHandler(IridiumTestRecievedHandler);
+  bootstrap.registerHandler(SassinChangeLineStateHandler);
+  bootstrap.registerHandler(SassinLineStateChangedHandler);
+  bootstrap.registerHandler(SassinLineStateChangeErrorHandler);
 
   await bootstrap.initialize(container);
 }
