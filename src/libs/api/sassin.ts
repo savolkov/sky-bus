@@ -19,8 +19,8 @@ class SassinApi {
     });
   }
 
-  private async checkAndGetToken(){
-    if (this.token.length < 1){
+  private async checkAndGetToken() {
+    if (this.token.length < 1) {
       const resp = await this.getToken();
       this.token = resp.data.Data;
     }
@@ -96,43 +96,51 @@ class SassinApi {
     return buff.toString('base64');
   }
 
-  // public async getDevices(userId: string) {
-  // const auth = getAuth({}, userId, token);
+  public async getDevices() {
+    await this.checkAndGetToken();
 
-  // axios.get(url + 'api/v2/devices/' + userId, {
-  //   headers: {
-  //     Authorization: auth
-  //   }
-  // }).then(res => {
-  //   console.log(res.data)
-  //   console.log('========= res')
-  // }).catch(err => {
-  //   console.log(err.response.data)
-  //   console.log('========= err')
-  // })
-  // }
+    const auth = await this.makeAuth({}, this.userId, this.token);
+    const reqUrl = `/api/v2/devices/${this.userId}`;
 
-  // public async getDeviceInfo(serialNumber: string) {
-  // const params = {
-  //   'SN': serialNumber
-  // }
+    const res = await this.api.get(
+      reqUrl,
+      {
+        headers: {
+          Authorization: auth,
+        },
+      },
+    );
 
-  // const auth = getAuth(params, userId, token);
+    return res.data;
+  }
 
-  // axios.get(url + 'api/v2/devices/' + serialNumber, {
-  //   headers: {
-  //     Authorization: auth
-  //   }
-  // }).then(res => {
-  //   console.log(res.data)
-  //   console.log('========= res')
-  // }).catch(err => {
-  //   console.log(err.response.data)
-  //   console.log('========= err')
-  // })
-  // }
+  public async getDeviceInfo(serialNumber: string) {
+    await this.checkAndGetToken();
 
-  public async changeLineState(controllerId: string, lineNumber: number, lineStatus: boolean) {
+    const body = {
+      SN: serialNumber,
+    };
+
+    const auth = await this.makeAuth(body, this.userId, this.token);
+    const reqUrl = `/api/v2/devices/${serialNumber}`;
+
+    const res = await this.api.get(
+      reqUrl,
+      {
+        headers: {
+          Authorization: auth,
+        },
+      },
+    );
+
+    return res.data;
+  }
+
+  public async changeLineState(
+    controllerId: string,
+    lineNumber: number,
+    lineStatus: boolean,
+  ) {
     await this.checkAndGetToken();
 
     const body = {
@@ -158,41 +166,37 @@ class SassinApi {
     return res.data;
   }
 
-  // public async getPowerDataTimestamp(deviceId: string, timestamp: number) {
-  // timestamp = 1598874321;
+  public async getMeasurementsTimestampRange(
+    deviceId: string,
+    timestampFrom: number,
+    timestampTo: number,
+  ) {
+    // if (!Number.isFinite(timestampTo)) {
+    //   timestampTo = moment().unix(); // eslint-disable-line no-param-reassign
+    // }
 
-  // if (!Number.isFinite(timestamp)){
-  //   timestamp = moment().unix();
-  // }
-  // const params = {
-  //   DeviceID: deviceId,
-  //   Time: timestamp
-  // }
+    await this.checkAndGetToken();
 
-  // const auth = getAuth(params, userId, token);
+    const body = {
+      DeviceID: deviceId,
+      StartTime: timestampFrom,
+      EndTime: timestampTo,
+    };
 
-  // axios.get(url + `api/v2/energy/${deviceId}/${timestamp}`, {
-  //   headers: {
-  //     Authorization: auth
-  //   }
-  // }).then(res => {
-  //   console.log(res.data.Data[0])
-  //   console.log('========= res')
+    const auth = await this.makeAuth(body, this.userId, this.token);
+    const reqUrl = `/api/v2/energy/${deviceId}/${timestampFrom}/${timestampTo}`;
 
-  //   // const arr = [];
-  //   // for (let i = 0; i < res.data.Data.length; i++){
-  //   //   arr.push({
-  //   //     data: moment(res.data.Data[i].TimeStamp),
-  //   //     value: res.data.Data[i].Lines[0].Energy
-  //   //   });
-  //   // }
-  //   // console.log(arr)
+    const res = await this.api.get(
+      reqUrl,
+      {
+        headers: {
+          Authorization: auth,
+        },
+      },
+    );
 
-  // }).catch(err => {
-  //   console.log(err.response.data)
-  //   console.log('========= err')
-  // })
-  // }
+    return res.data;
+  }
 }
 
 export { SassinApi };

@@ -7,25 +7,30 @@ class SassinAdapter {
     this.api = sassinApi;
   }
 
-  // public async getDevices(uuidController:string, lineNumber:number, state:boolean) {
-  //   const response = await this.api.getDevices(uuidController, lineNumber, state);
-  //   return response;
-  // }
+  public async getDevices() {
+    const response = await this.api.getDevices();
+    return response;
+  }
 
-  // public async getDeviceInfo(uuidController:string, lineNumber:number, state:boolean) {
-  //   const response = await this.api.changeLineState(uuidController, lineNumber, state);
-  //   return response;
-  // }
+  public async getDeviceInfo(serialNumber:string) {
+    const response = await this.api.getDeviceInfo(serialNumber);
+    return response;
+  }
 
   public async changeLineState(uuidController:string, lineNumber:number, state:boolean) {
     const response = await this.api.changeLineState(uuidController, lineNumber, state);
     return response;
   }
 
-  // public async getPowerDataTimestamp(uuidController:string, lineNumber:number, state:boolean) {
-  //   const response = await this.api.changeLineState(uuidController, lineNumber, state);
-  //   return response;
-  // }
+  public async getMeasurementsTimestampRange(
+    uuidDevice:string,
+    timestampFrom: number,
+    timestampTo: number,
+  ) {
+    const response = await this.api
+      .getMeasurementsTimestampRange(uuidDevice, timestampFrom, timestampTo);
+    return response;
+  }
 }
 
 export { SassinAdapter };

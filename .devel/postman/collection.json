@@ -15,7 +15,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"lineNumber\": \"1\", \n    \"state\": true\n}",
+							"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"lineNumber\": \"1\", \n    \"active\": true\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -30,6 +30,122 @@
 							"path": [
 								"sassin",
 								"change-line-state"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get devices",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"lineNumber\": \"1\", \n    \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sky_bus_url}}/sassin/device",
+							"host": [
+								"{{sky_bus_url}}"
+							],
+							"path": [
+								"sassin",
+								"device"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get device info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"lineNumber\": \"1\", \n    \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sky_bus_url}}/sassin/device/serial/:sn",
+							"host": [
+								"{{sky_bus_url}}"
+							],
+							"path": [
+								"sassin",
+								"device",
+								"serial",
+								":sn"
+							],
+							"variable": [
+								{
+									"key": "sn",
+									"value": "J269021286087"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get measurements",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"lineNumber\": \"1\", \n    \"active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sky_bus_url}}/sassin/device/:uuid/metrics?timestampFrom=1599009800&timestampTo=1599409800",
+							"host": [
+								"{{sky_bus_url}}"
+							],
+							"path": [
+								"sassin",
+								"device",
+								":uuid",
+								"metrics"
+							],
+							"query": [
+								{
+									"key": "timestampFrom",
+									"value": "1599009800"
+								},
+								{
+									"key": "timestampTo",
+									"value": "1599409800"
+								}
+							],
+							"variable": [
+								{
+									"key": "uuid",
+									"value": "5d7f734f690e7618fce6bd93"
+								}
 							]
 						}
 					},

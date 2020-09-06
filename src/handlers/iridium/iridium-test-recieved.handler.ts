@@ -35,7 +35,7 @@ export class IridiumTestRecievedHandler {
     }
 
     try {
-      const result = await axios.post('localhost:1234', data);
+      const result = await axios.post('http://localhost:1234', data);
       this.logger.info(result.data);
       this.bus.publish(new IridiumTestPassedEvent(iridiumEvent));
     } catch (err) {

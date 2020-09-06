@@ -25,7 +25,7 @@ export class SassinChangeLineStateHandler {
     const sputnikApi = new SassinApi(
       // TODO: add .env storage
       '5f487b6001d41816ccfbc7e8',
-      'dd488516cd84484f9a511c9e5f9db4a3'
+      'dd488516cd84484f9a511c9e5f9db4a3',
     );
     const sassinAdapter = new SassinAdapter(sputnikApi);
 
@@ -56,7 +56,6 @@ export class SassinChangeLineStateHandler {
         err,
       );
       await this.bus.publish(new SassinLineStateChangeError(sassinLineStateTriedToChange));
-      
     }
   }
 }
