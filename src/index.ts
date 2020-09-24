@@ -11,8 +11,27 @@ import { ApplicationContainer } from './application-container';
 
 import './endpoints/ping.controller';
 import './endpoints/macroscop.controller';
-import { MacroscopWarningWorkflow, MacroscopWarningWorkflowData } from './workflows';
-import { MacroscopWarningRecievedHandler } from './handlers';
+import './endpoints/sputnik.controller';
+import './endpoints/sassin.controller';
+import {
+  MacroscopWarningRecievedHandler,
+} from './handlers';
+
+import { SputnikOpenDoorHandler } from './handlers/sputnik/openDoor.handler';
+
+import './endpoints/iridium.controller';
+import {
+  MacroscopWarningWorkflow,
+  MacroscopWarningWorkflowData,
+} from './workflows';
+
+import { IridiumTestWorkflow } from './workflows/iridium/iridium-test.workflow';
+import { IridiumTestWorkflowData } from './workflows/iridium/iridium-test.workflow.data';
+
+import { IridiumTestRecievedHandler } from './handlers/iridium/iridium-test-recieved.handler';
+import { SassinChangeLineStateHandler } from './handlers/sassin/changeLineState.handler';
+import { SassinLineStateChangedHandler } from './handlers/sassin/lineStateChanged.handler';
+import { SassinLineStateChangeErrorHandler } from './handlers/sassin/lineStateChangeError.handler';
 
 const container = new ApplicationContainer();
 container.rebind(WINSTON_SYMBOLS.WinstonConfiguration).to(LoggerConfiguration);
@@ -27,15 +46,25 @@ async function initialize(): Promise<void> {
   });
 
   const app = server.build();
-  app.listen(3000);
+  const PORT = 3000;
+  app.listen(PORT);
+  console.log('==========================================');
+  console.log(`Server started at http://localhost:${PORT}`);
+  console.log('==========================================\n');
 
   // bus
   const workflowRegistry = container.get<WorkflowRegistry>(BUS_WORKFLOW_SYMBOLS.WorkflowRegistry);
   workflowRegistry.register(MacroscopWarningWorkflow, MacroscopWarningWorkflowData);
+  workflowRegistry.register(IridiumTestWorkflow, IridiumTestWorkflowData);
   await workflowRegistry.initializeWorkflows();
 
   const bootstrap = container.get<ApplicationBootstrap>(BUS_SYMBOLS.ApplicationBootstrap);
   bootstrap.registerHandler(MacroscopWarningRecievedHandler);
+  bootstrap.registerHandler(SputnikOpenDoorHandler);
+  bootstrap.registerHandler(IridiumTestRecievedHandler);
+  bootstrap.registerHandler(SassinChangeLineStateHandler);
+  bootstrap.registerHandler(SassinLineStateChangedHandler);
+  bootstrap.registerHandler(SassinLineStateChangeErrorHandler);
 
   await bootstrap.initialize(container);
 }
