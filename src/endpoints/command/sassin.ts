@@ -10,10 +10,10 @@ import {
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { Bus, BUS_SYMBOLS } from '@node-ts/bus-core';
-import { SassinApi } from '../libs/api/sassin';
-import { SassinChangeLineState } from '../messages';
-import { SassinChangeLineStateCommand } from '../types/sassin/changeLineStateCommand';
-import { SassinAdapter } from '../adapters/sassin';
+import { SassinApi } from '../../libs/api/sassin';
+import { SassinChangeLineState } from '../../messages';
+import { SassinChangeLineStateCommand } from '../../types/sassin/changeLineStateCommand';
+import { SassinAdapter } from '../../adapters/sassin';
 
 @controller('/sassin')
 export class SassinController implements interfaces.Controller {

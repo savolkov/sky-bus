@@ -9,6 +9,12 @@ import { SassinChangeLineStateHandler } from './sassin/changeLineState.handler';
 import { SassinLineStateChangedHandler } from './sassin/lineStateChanged.handler';
 import { SassinLineStateChangeErrorHandler } from './sassin/lineStateChangeError.handler';
 
+import {
+  SigurGatewayAccessDeniedHandler,
+  SigurGatewayAccessRequiredHandler,
+  SigurGatewayPassedHandler,
+} from './sigur';
+
 export class HandlersModule extends ContainerModule {
   constructor() {
     super((bind) => {
@@ -20,6 +26,10 @@ export class HandlersModule extends ContainerModule {
       bindLogger(bind, SassinChangeLineStateHandler);
       bindLogger(bind, SassinLineStateChangedHandler);
       bindLogger(bind, SassinLineStateChangeErrorHandler);
+
+      bindLogger(bind, SigurGatewayAccessDeniedHandler);
+      bindLogger(bind, SigurGatewayAccessRequiredHandler);
+      bindLogger(bind, SigurGatewayPassedHandler);
     });
   }
 }

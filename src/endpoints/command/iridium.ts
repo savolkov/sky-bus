@@ -8,8 +8,8 @@ import {
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { Bus, BUS_SYMBOLS } from '@node-ts/bus-core';
-import { IridiumTestRecievedEvent } from '../messages/iridium/iridium-test-recieved.event';
-import { IridiumTest } from '../types/iridumTest';
+import { IridiumTestRecievedEvent } from '../../messages/iridium/iridium-test-recieved.event';
+import { IridiumTest } from '../../types/iridumTest';
 
 @controller('/iridium')
 export class IridiumController implements interfaces.Controller {
