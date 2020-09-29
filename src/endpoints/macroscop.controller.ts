@@ -11,6 +11,13 @@ import { Bus, BUS_SYMBOLS } from '@node-ts/bus-core';
 import { MacroscopWarningRecieved } from '../messages';
 import { MacroscopWarning } from '../types/macroscopWarning';
 
+// TODO: методы
+// 1. Посмотреть камеру (ссылку на трансляцию) |
+// 2. видеофиксация прохода (событие) | сохранение в СКУД
+// 3. кидать событие при наступлении определённого события |
+// 4. расчёт потоков людей | https://macroscop.com/assets/documentation/macroscop-2-5/analytics/counting/counting.htm
+// 5. распознавание лиц (событием) | https://macroscop.com/assets/documentation/macroscop-2-5/config/automation/events.htm#eventfacedetection
+
 @controller('/macroscop')
 export class MacroscopController implements interfaces.Controller {
   constructor(
