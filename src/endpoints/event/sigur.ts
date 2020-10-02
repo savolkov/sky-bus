@@ -26,13 +26,12 @@ export class SigurController implements interfaces.Controller {
   ) {
     const events = req.body.d;
     for (let i = 0; i < events.length; i++) { // eslint-disable-line no-plusplus
-    // for (const event of events) {
       const gatewayEvent: SigurGatewayEvent = {
         passIndex: events[i].i,
         isGatewayPassed: events[i].type === 1,
         gatewayId: events[i].ap,
         uuidPersone: req.body.e,
-        timestamp: new Date(events[i].t),
+        timestamp: events[i].t,
         isIngoingDirection: events[i].d !== 1,
         passCardId: events[i].keyHex,
       };
@@ -42,11 +41,10 @@ export class SigurController implements interfaces.Controller {
       } else {
         this.bus.publish(new SigurGatewayAccessDenied(gatewayEvent));
       }
-      // await this.bus.publish(new SigurGatewayAccessRequired(gatewayPassedEvent));
     }
 
-    const lastIndex = events[events.length - 1];
+    const lastIndex = events[events.length - 1].i;
 
-    res.status(204).send({ i: lastIndex });
+    res.status(200).send({ i: lastIndex });
   }
 }

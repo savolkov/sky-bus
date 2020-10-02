@@ -116,3 +116,9 @@ Body example
    audioFileUrl: "https://some.file.mp3"
 }
 ```
+
+
+## Sigur integration
+1. Enable event sending to web server in Sigur mysql db (use web integration docs)
+2. Set webhook url to http://localhost:3000/sigur/event
+3. reboot sigur via Sigur server monitoring tool

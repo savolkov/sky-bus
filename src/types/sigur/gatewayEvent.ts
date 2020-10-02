@@ -5,5 +5,5 @@ export type SigurGatewayEvent = {
   isIngoingDirection: boolean, // false means outgoing
   uuidPersone?: string,
   passCardId?: string,
-  timestamp: Date
+  timestamp: number // unix timestamp in seconds
 };
