@@ -1,10 +1,192 @@
 {
 	"info": {
-		"_postman_id": "30c15712-6449-4e76-9e01-971f02e69eb6",
+		"_postman_id": "5469e295-b243-4119-a3b1-3473e08a8d34",
 		"name": "SKY: Bus",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "sigur",
+			"item": [
+				{
+					"name": "events",
+					"item": [
+						{
+							"name": "gateway passed",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"uuidPersone\": \"-1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sky_bus_url}}/sigur/event",
+									"host": [
+										"{{sky_bus_url}}"
+									],
+									"path": [
+										"sigur",
+										"event"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "bulk events",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"l\": \"\",\n    \"z\": -10800,\n    \"d\": [\n        {\n            \"i\": 3,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197210,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 4,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197214,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 5,\n            \"type\": 2,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197223,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 6,\n            \"type\": 2,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197226,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 8,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197229,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 9,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197231,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 10,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197233,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 11,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197235,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 12,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197257,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 13,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197260,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 14,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197264,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 15,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197266,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 16,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197268,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 17,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197269,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 18,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197269,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 19,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197269,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 20,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197270,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 21,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197270,\n            \"d\": 3,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 22,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197270,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 23,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197270,\n            \"d\": 3,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 24,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197270,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 25,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197271,\n            \"d\": 3,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 26,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197271,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 27,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197271,\n            \"d\": 3,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 28,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197271,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 29,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197272,\n            \"d\": 3,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 30,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197272,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 31,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197272,\n            \"d\": 3,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 32,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197272,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 33,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197272,\n            \"d\": 3,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 34,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197278,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 35,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197281,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 36,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197303,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 37,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197309,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 38,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197337,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 39,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197344,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 40,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197360,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 41,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197366,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 43,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197482,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 44,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197500,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 45,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197506,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 46,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197513,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 47,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197517,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 48,\n            \"type\": 2,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197544,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 50,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197559,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 51,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197561,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 52,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197563,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 53,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197582,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 54,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197584,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 55,\n            \"type\": 2,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197587,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 56,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197588,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 57,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197590,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 58,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197591,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 59,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197595,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 60,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197598,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 61,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197599,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 62,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197606,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 63,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197614,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 64,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197617,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 65,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197618,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 66,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197618,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 67,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197618,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 68,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197619,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 69,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197620,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 70,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197621,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 71,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197621,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 72,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197623,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 73,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197624,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 74,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197625,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 75,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197625,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 76,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197626,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 77,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197626,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 78,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197627,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 79,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197627,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 80,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197628,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 81,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197628,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 82,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197628,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 83,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197629,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 84,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197629,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 85,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197630,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 86,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197635,\n            \"d\": 3,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 87,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197639,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 88,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197642,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 89,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197818,\n            \"d\": 1,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 90,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197821,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 91,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197829,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 92,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197834,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 93,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576215437,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 94,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576215461,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 95,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576215465,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 96,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576215467,\n            \"d\": 2,\n            \"keyHex\": \"000000\"\n        },\n        {\n            \"i\": 97,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576215469,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 98,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576215472,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 99,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576215475,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        },\n        {\n            \"i\": 100,\n            \"type\": 2,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1600680723,\n            \"d\": 2,\n            \"keyHex\": \"C09F1D\"\n        },\n        {\n            \"i\": 101,\n            \"type\": 2,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1600680737,\n            \"d\": 1,\n            \"keyHex\": \"3BC09F1D\"\n        },\n        {\n            \"i\": 102,\n            \"type\": 2,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1600680743,\n            \"d\": 2,\n            \"keyHex\": \"C09F1D\"\n        },\n        {\n            \"i\": 103,\n            \"type\": 2,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1600680869,\n            \"d\": 1,\n            \"keyHex\": \"3BC09F1D\"\n        },\n        {\n            \"i\": 106,\n            \"type\": 2,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1600681065,\n            \"d\": 2,\n            \"keyHex\": \"C09F1D\"\n        },\n        {\n            \"i\": 110,\n            \"type\": 2,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1600685236,\n            \"d\": 2,\n            \"keyHex\": \"6003EF\"\n        }\n    ],\n    \"s\": \"129635B9C853519B\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sky_bus_url}}/sigur/event",
+									"host": [
+										"{{sky_bus_url}}"
+									],
+									"path": [
+										"sigur",
+										"event"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "gateway access denied",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"uuidPersone\": \"-1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sky_bus_url}}/sigur/event",
+									"host": [
+										"{{sky_bus_url}}"
+									],
+									"path": [
+										"sigur",
+										"event"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "commands",
+					"item": [
+						{
+							"name": "TODO: open door",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"uuidPersone\": \"-1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sky_bus_url}}/sigur/event",
+									"host": [
+										"{{sky_bus_url}}"
+									],
+									"path": [
+										"sigur",
+										"event"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TODO: is persone in building",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"uuidPersone\": \"-1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sky_bus_url}}/sigur/event",
+									"host": [
+										"{{sky_bus_url}}"
+									],
+									"path": [
+										"sigur",
+										"event"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "TODO: calculate persone work time",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"uuidPersone\": \"-1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{sky_bus_url}}/sigur/event",
+									"host": [
+										"{{sky_bus_url}}"
+									],
+									"path": [
+										"sigur",
+										"event"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
 		{
 			"name": "sassin",
 			"item": [
@@ -15,7 +197,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"lineNumber\": \"1\", \n    \"active\": true\n}",
+							"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"lineNumber\": \"1\", \n    \"active\": false\n}",
 							"options": {
 								"raw": {
 									"language": "json"
