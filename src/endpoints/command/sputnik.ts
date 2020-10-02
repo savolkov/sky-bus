@@ -8,8 +8,8 @@ import {
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { Bus, BUS_SYMBOLS } from '@node-ts/bus-core';
-import { SputnikOpenDoor } from '../messages';
-import { SputnikOpenDoorCommand } from '../types/sputnik/openDoorCommand';
+import { SputnikOpenDoor } from '../../messages';
+import { SputnikOpenDoorCommand } from '../../types/sputnik/openDoorCommand';
 
 @controller('/sputnik')
 export class SputnikController implements interfaces.Controller {

@@ -9,17 +9,18 @@ import { InversifyExpressServer } from 'inversify-express-utils';
 import { LoggerConfiguration } from './configuration';
 import { ApplicationContainer } from './application-container';
 
-import './endpoints/ping.controller';
-import './endpoints/macroscop.controller';
-import './endpoints/sputnik.controller';
-import './endpoints/sassin.controller';
+import './endpoints/command/ping';
+import './endpoints/command/macroscop';
+import './endpoints/command/sputnik';
+import './endpoints/command/sassin';
+import './endpoints/event/sigur';
 import {
   MacroscopWarningRecievedHandler,
 } from './handlers';
 
 import { SputnikOpenDoorHandler } from './handlers/sputnik/openDoor.handler';
 
-import './endpoints/iridium.controller';
+import './endpoints/command/iridium';
 import {
   MacroscopWarningWorkflow,
   MacroscopWarningWorkflowData,
@@ -32,6 +33,12 @@ import { IridiumTestRecievedHandler } from './handlers/iridium/iridium-test-reci
 import { SassinChangeLineStateHandler } from './handlers/sassin/changeLineState.handler';
 import { SassinLineStateChangedHandler } from './handlers/sassin/lineStateChanged.handler';
 import { SassinLineStateChangeErrorHandler } from './handlers/sassin/lineStateChangeError.handler';
+
+import {
+  SigurGatewayAccessDeniedHandler,
+  SigurGatewayAccessRequiredHandler,
+  SigurGatewayPassedHandler,
+} from './handlers/sigur';
 
 const container = new ApplicationContainer();
 container.rebind(WINSTON_SYMBOLS.WinstonConfiguration).to(LoggerConfiguration);
@@ -65,6 +72,10 @@ async function initialize(): Promise<void> {
   bootstrap.registerHandler(SassinChangeLineStateHandler);
   bootstrap.registerHandler(SassinLineStateChangedHandler);
   bootstrap.registerHandler(SassinLineStateChangeErrorHandler);
+
+  bootstrap.registerHandler(SigurGatewayAccessDeniedHandler);
+  bootstrap.registerHandler(SigurGatewayAccessRequiredHandler);
+  bootstrap.registerHandler(SigurGatewayPassedHandler);
 
   await bootstrap.initialize(container);
 }
