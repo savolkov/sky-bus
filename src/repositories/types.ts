@@ -9,4 +9,5 @@ export const REPOSITORIES = {
   StatesRepository: Symbol('StatesRepository'),
   VariablesRepository: Symbol('VariablesRepository'),
   VariableValuesRepository: Symbol('VariableValuesRepository'),
+  GatewayPassEventRepository: Symbol('GatewayPassEventRepository'),
 };

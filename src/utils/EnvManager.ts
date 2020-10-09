@@ -21,7 +21,7 @@ export class EnvManager {
       // database: process.env.PG_DB_NAME,
       // schema: process.env.PG_SCHEMA,
       synchronize: false,
-      entities: [`${__dirname}/entities/*.js`],
+      entities: [`${__dirname}/../repositories/entities/*.js`],
     };
   }
 }

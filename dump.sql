@@ -178,3 +178,24 @@ alter table "VariableValue" owner to postgres;
 create unique index variablevalue_id_uindex
     on "VariableValue" ("Id");
 
+
+create table "gateway_pass_event"
+(
+    "id" serial not null,
+    "ext_id" integer,
+    "is_passed" boolean,
+    "gateway_id" integer,
+    "is_in_direction" boolean,
+    "s_persone_id" varchar,
+    "s_card_id" varchar,
+    "timestamp" integer not null
+);
+
+alter table "gateway_pass_event" owner to postgres;
+
+create unique index gateway_pass_event_id_uindex
+    on "gateway_pass_event" ("id");
+
+alter table "gateway_pass_event"
+    add constraint gateway_pass_event_pk
+    primary key ("id");

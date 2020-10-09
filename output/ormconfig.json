@@ -8,7 +8,7 @@
     "password": "1q2w3e",
     "database": "postgres",
     "schema": "sky",
-    "synchronize": false,
-    "entities": ["entities/*.js"]
+    "synchronize": true,
+    "entities": ["repositories/entities/*.js"]
   }
 ]

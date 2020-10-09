@@ -3,7 +3,7 @@ export type SigurGatewayEvent = {
   isGatewayPassed: boolean, // false means access has denied
   gatewayId: number,
   isIngoingDirection: boolean, // false means outgoing
-  uuidPersone?: string,
-  passCardId?: string,
+  uuidPersone: string | null,
+  passCardId: string | null,
   timestamp: number // unix timestamp in seconds
 };
