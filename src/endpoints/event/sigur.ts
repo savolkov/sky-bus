@@ -11,7 +11,6 @@ import { Bus, BUS_SYMBOLS } from '@node-ts/bus-core';
 import {
   SigurGatewayPassed,
   SigurGatewayAccessDenied,
-  // SigurGatewayAccessRequired,
 } from '../../messages/sigur';
 import { SigurGatewayEvent } from '../../types/sigur';
 
