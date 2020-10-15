@@ -188,6 +188,72 @@
 			"protocolProfileBehavior": {}
 		},
 		{
+			"name": "devline",
+			"item": [
+				{
+					"name": "get cameras",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"relayNumber\": 2,\n    \"relayState\": true,\n    \"description\": \"test description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sky_bus_url}}/devline/cameras",
+							"host": [
+								"{{sky_bus_url}}"
+							],
+							"path": [
+								"devline",
+								"cameras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get camera info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"relayNumber\": 2,\n    \"relayState\": true,\n    \"description\": \"test description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sky_bus_url}}/devline/cameras",
+							"host": [
+								"{{sky_bus_url}}"
+							],
+							"path": [
+								"devline",
+								"cameras"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
 			"name": "iridium",
 			"item": [
 				{

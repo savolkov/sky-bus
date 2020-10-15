@@ -14,6 +14,7 @@ import './endpoints/command/macroscop';
 import './endpoints/command/sputnik';
 import './endpoints/command/sassin';
 import './endpoints/event/sigur';
+import './endpoints/command/devline';
 import {
   MacroscopWarningRecievedHandler,
 } from './handlers';
