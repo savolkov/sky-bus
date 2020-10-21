@@ -5,7 +5,7 @@ class DevlineApi {
 
   private host: String;
 
-  constructor(host: string) {
+  constructor(host: string, username: string, password: string) {
     this.host = host;
     this.api = axios.create({
       baseURL: host,
@@ -13,6 +13,10 @@ class DevlineApi {
         get: {
           Accept: 'application/json',
         },
+      },
+      auth: {
+        username,
+        password,
       },
     });
   }

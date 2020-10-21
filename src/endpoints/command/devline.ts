@@ -21,7 +21,11 @@ export class DevlineController implements interfaces.Controller {
   constructor(
     @inject(BUS_SYMBOLS.Bus) private readonly bus: Bus,
   ) {
-    const devlineApi = new DevlineApi(process.env.DEVLINE_HOST || '');
+    const devlineApi = new DevlineApi(
+      process.env.DEVLINE_HOST || '',
+      process.env.DEVLINE_USER || '',
+      process.env.DEVLINE_PASSWORD || '',
+    );
     this.devlineAdapter = new DevlineAdapter(devlineApi);
   }
 
@@ -38,7 +42,7 @@ export class DevlineController implements interfaces.Controller {
 
   @httpGet('/cameras/:uuid')
   private async info(@request() req: express.Request, @response() res: express.Response) {
-    const { uuid } = req.body;
+    const { uuid } = req.params;
     try {
       const camera = await this.devlineAdapter.getCameraInfo(uuid);
       res.status(200).send(camera);

@@ -32,8 +32,6 @@ class DevlineAdapter {
   public async getCameras() {
     const cameras = await this.api.getCamerasList();
 
-    console.log(cameras);
-
     for (let i = 0; i < cameras.length; i++) {
       cameras[i] = this.normalizeCameraObject(cameras[i]);
     }
@@ -43,7 +41,6 @@ class DevlineAdapter {
 
   public async getCameraInfo(id: string) {
     const camera = await this.api.getCameraInfo(id);
-    console.log(camera);
 
     return this.normalizeCameraObject(camera);
   }
