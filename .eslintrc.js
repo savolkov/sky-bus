@@ -31,6 +31,7 @@ module.exports = {
     'implicit-arrow-linebreak': 'off',
     'import/no-cycle': 'off',
     'import/no-extraneous-dependencies': 'off',
-    'import/prefer-default-export': 'warn'
+    'import/prefer-default-export': 'warn',
+    'no-plusplus': [2, { allowForLoopAfterthoughts: true }]
   },
 };
