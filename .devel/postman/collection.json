@@ -18,7 +18,7 @@
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"l\": \"\",\n    \"z\": -10800,\n    \"d\": [\n        {\n            \"i\": 3,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197210,\n            \"d\": 1,\n            \"keyHex\": \"BD006D\"\n        }\n    ],\n    \"s\": \"123123123123\"\n}",
+									"raw": "{\n    \"l\": \"\",\n    \"z\": -10800,\n    \"d\": [\n        {\n            \"i\": 43,\n            \"type\": 1,\n            \"ap\": 1,\n            \"e\": \"\",\n            \"t\": 1576197286,\n            \"d\": 2,\n            \"keyHex\": \"BD006D\"\n        }\n    ],\n    \"s\": \"123123123123\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -127,13 +127,13 @@
 							"response": []
 						},
 						{
-							"name": "TODO: is persone in building",
+							"name": "is persone in building",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"uuidPersone\": \"-1\"\n}",
+									"raw": "{\n    \"cardId\": \"BD006D\"\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -141,26 +141,26 @@
 									}
 								},
 								"url": {
-									"raw": "{{sky_bus_url}}/sigur/event",
+									"raw": "{{sky_bus_url}}/sigur/is-persone-inside",
 									"host": [
 										"{{sky_bus_url}}"
 									],
 									"path": [
 										"sigur",
-										"event"
+										"is-persone-inside"
 									]
 								}
 							},
 							"response": []
 						},
 						{
-							"name": "TODO: calculate persone work time",
+							"name": "calculate persone work time",
 							"request": {
 								"method": "POST",
 								"header": [],
 								"body": {
 									"mode": "raw",
-									"raw": "{\n    \"uuidDevice\": \"5d75a8dccb1f5c107c449108\",\n    \"uuidPersone\": \"-1\"\n}",
+									"raw": "{\n    \"from\": \"100\",\n    \"cardId\": \"BD006D\"\n\n}",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -168,13 +168,13 @@
 									}
 								},
 								"url": {
-									"raw": "{{sky_bus_url}}/sigur/event",
+									"raw": "{{sky_bus_url}}/sigur/work-duration",
 									"host": [
 										"{{sky_bus_url}}"
 									],
 									"path": [
 										"sigur",
-										"event"
+										"work-duration"
 									]
 								}
 							},
