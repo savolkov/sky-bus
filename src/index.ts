@@ -13,6 +13,7 @@ import './endpoints/command/ping';
 import './endpoints/command/macroscop';
 import './endpoints/command/sputnik';
 import './endpoints/command/sassin';
+import './endpoints/command/sigur';
 import './endpoints/event/sigur';
 import './endpoints/command/devline';
 import {
@@ -82,7 +83,9 @@ async function initialize(): Promise<void> {
 }
 
 initialize()
-  .then(() => console.log('started'))
+  .then(() => {
+    console.log('started');
+  })
   .catch((err) => {
     console.error(err);
   });
