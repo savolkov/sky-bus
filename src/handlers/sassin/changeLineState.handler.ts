@@ -1,46 +1,76 @@
 import { HandlesMessage, BUS_SYMBOLS, Bus } from '@node-ts/bus-core';
 import { inject } from 'inversify';
 import { LOGGER_SYMBOLS, Logger } from '@node-ts/logger-core';
+import { Repository } from 'typeorm';
+import { AutomaticSwitchEvent } from 'repositories/entities/AutomaticSwitchEvent';
 import { SassinChangeLineState } from '../../messages';
 import { SassinAdapter } from '../../adapters/sassin';
-import { SassinApi } from '../../libs/api/sassin';
 import { SassinLineStateChangeError } from '../../messages/sassin/lineStateChangeError.event';
 import { SassinLineStateChanged } from '../../messages/sassin/lineStateChanged.event';
 import { SassinLineStateTriedToChange } from '../../types/sassin/lineStateTriedToChange';
+
+import { ADAPTERS, REPOSITORIES } from '../../repositories/types';
 
 @HandlesMessage(SassinChangeLineState)
 export class SassinChangeLineStateHandler {
   constructor(
     @inject(BUS_SYMBOLS.Bus) private readonly bus: Bus,
     @inject(LOGGER_SYMBOLS.Logger) private readonly logger: Logger,
+    @inject(REPOSITORIES.AutomaticSwitchEventRepository)
+    private readonly eventRepository: Repository<AutomaticSwitchEvent>,
+    @inject(ADAPTERS.Sassin)
+    private readonly adapter: SassinAdapter,
   ) {
   }
 
-  async handle(sassinEvent: SassinChangeLineState): Promise<void> {
-    this.logger.info(
-      `SassinChangeLineState event received, device uuid: ${sassinEvent.sassinEvent.deviceUuid}\n`,
-      sassinEvent,
-    );
+  private async createAutomaticSwitchEvent( // TODO: вынести функцию для доступа из других файлов
+    deviceId: string,
+    lineId: number,
+    isTurnedOn: boolean,
+    timestamp: number,
+    is_succeed: boolean = true,
+  ): Promise<AutomaticSwitchEvent> {
+    const draft = this.eventRepository.create();
+    draft.deviceId = deviceId;
+    draft.lineId = lineId;
+    draft.isTurnedOn = isTurnedOn;
+    draft.timestamp = timestamp;
+    draft.isSucceed = is_succeed;
+    return this.eventRepository.save(draft);
+  }
 
-    const sputnikApi = new SassinApi(
-      // TODO: add .env storage
-      '5f487b6001d41816ccfbc7e8',
-      'dd488516cd84484f9a511c9e5f9db4a3',
+  async handle(sassinEvent: SassinChangeLineState): Promise<void> {
+    const {
+      deviceUuid,
+      lineNumber,
+      state,
+      timestamp,
+    } = sassinEvent.sassinEvent;
+
+    this.logger.info(
+      `SassinChangeLineState event received, device uuid: ${deviceUuid}\n`,
+      sassinEvent.sassinEvent,
     );
-    const sassinAdapter = new SassinAdapter(sputnikApi);
 
     const sassinLineStateTriedToChange: SassinLineStateTriedToChange = {
-      deviceUuid: sassinEvent.sassinEvent.deviceUuid,
-      lineNumber: sassinEvent.sassinEvent.lineNumber,
-      timestamp: new Date(),
+      deviceUuid,
+      lineNumber,
+      timestamp,
     };
 
     let res = {};
     try {
-      res = await sassinAdapter.changeLineState(
-        sassinEvent.sassinEvent.deviceUuid,
-        sassinEvent.sassinEvent.lineNumber,
-        sassinEvent.sassinEvent.state,
+      res = await this.adapter.changeLineState(
+        deviceUuid,
+        lineNumber,
+        state,
+      );
+
+      await this.createAutomaticSwitchEvent(
+        deviceUuid,
+        lineNumber,
+        state,
+        timestamp,
       );
 
       this.logger.info(
@@ -55,6 +85,15 @@ export class SassinChangeLineStateHandler {
         'Sassin line status change error api response ',
         err,
       );
+
+      await this.createAutomaticSwitchEvent(
+        deviceUuid,
+        lineNumber,
+        state,
+        timestamp,
+        false,
+      );
+
       await this.bus.publish(new SassinLineStateChangeError(sassinLineStateTriedToChange));
     }
   }

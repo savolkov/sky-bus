@@ -11,11 +11,11 @@ class SassinApi {
 
   private api: AxiosInstance;
 
-  constructor(userId: string, secret: string) {
+  constructor(userId: string, secret: string, host: string) {
     this.userId = userId;
     this.secret = secret;
     this.api = axios.create({
-      baseURL: 'http://ex-api.jalasmart.com/',
+      baseURL: host,
     });
   }
 

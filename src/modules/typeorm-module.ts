@@ -4,9 +4,11 @@ import { Repository } from 'typeorm';
 import { getDbConnection } from '../repositories/dbConnection';
 import { Accident } from '../repositories/entities/Accident';
 import { GatewayPassEvent } from '../repositories/entities/GatewayPassEvent';
+import { AutomaticSwitchEvent } from '../repositories/entities/AutomaticSwitchEvent';
 import { REPOSITORIES } from '../repositories/types';
 import getAccidentsRepository from '../repositories/AccidentsRepository';
 import getGatewayPassEventRepository from '../repositories/GatewayPassEventRepository';
+import getAutomaticSwitchEventRepository from '../repositories/AutomaticSwitchEventRepository';
 import getUnitsRepository from '../repositories/UnitsRepository';
 import { Units } from '../repositories/entities/Units';
 import { AccidentType } from '../repositories/entities/AccidentType';
@@ -30,6 +32,7 @@ const TypeormModule = new AsyncContainerModule(async (bind) => {
   await getDbConnection();
 
   bind<Repository<Accident>>(REPOSITORIES.AccidentsRepository).toDynamicValue(() => getAccidentsRepository()).inRequestScope();
+  bind<Repository<AutomaticSwitchEvent>>(REPOSITORIES.AutomaticSwitchEventRepository).toDynamicValue(() => getAutomaticSwitchEventRepository()).inRequestScope();
   bind<Repository<GatewayPassEvent>>(REPOSITORIES.GatewayPassEventRepository).toDynamicValue(() => getGatewayPassEventRepository()).inRequestScope();
   bind<Repository<AccidentType>>(REPOSITORIES.AccidentTypesRepository).toDynamicValue(() => getAccidentTypeRepository()).inRequestScope();
   bind<Repository<ObjectHasObject>>(REPOSITORIES.ObjectHasObjectRepository).toDynamicValue(() => getObjectHasObjectRepository()).inRequestScope();
