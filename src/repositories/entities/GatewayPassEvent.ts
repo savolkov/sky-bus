@@ -30,6 +30,6 @@ export class GatewayPassEvent {
   @Column('character varying', { name: 's_card_id' })
   passCardId: string | null;
 
-  @Column('timestamp without time zone', { name: 'timestamp' })
+  @Column('integer', { name: 'timestamp' })
   timestamp: number;
 }

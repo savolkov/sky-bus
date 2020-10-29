@@ -1,6 +1,6 @@
 export type SassinLineStateTriedToChange = {
   deviceUuid: string,
   lineNumber: number,
-  timestamp: Date,
+  timestamp: number,
   errors?: object,
 };

@@ -199,3 +199,26 @@ create unique index gateway_pass_event_id_uindex
 alter table "gateway_pass_event"
     add constraint gateway_pass_event_pk
     primary key ("id");
+
+
+
+    
+create table "switch_event"
+(
+    "id" serial not null,
+    "s_device_id" varchar,
+    "line_id" integer,
+    "is_turned_on" boolean,
+    "is_succeed" boolean,
+    "timestamp" integer not null
+);
+
+
+alter table "switch_event" owner to postgres;
+
+create unique index switch_event_id_uindex
+    on "switch_event" ("id");
+
+alter table "switch_event"
+    add constraint switch_event_pk
+    primary key ("id");

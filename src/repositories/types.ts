@@ -10,4 +10,9 @@ export const REPOSITORIES = {
   VariablesRepository: Symbol('VariablesRepository'),
   VariableValuesRepository: Symbol('VariableValuesRepository'),
   GatewayPassEventRepository: Symbol('GatewayPassEventRepository'),
+  AutomaticSwitchEventRepository: Symbol('AutomaticSwitchEventRepository'),
+};
+
+export const ADAPTERS = {
+  Sassin: Symbol('SassinApi'),
 };

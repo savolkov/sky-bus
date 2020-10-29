@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as moment from 'moment';
 import {
   interfaces,
   controller,
@@ -10,24 +11,18 @@ import {
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { Bus, BUS_SYMBOLS } from '@node-ts/bus-core';
-import { SassinApi } from '../../libs/api/sassin';
 import { SassinChangeLineState } from '../../messages';
 import { SassinChangeLineStateCommand } from '../../types/sassin/changeLineStateCommand';
 import { SassinAdapter } from '../../adapters/sassin';
+import { ADAPTERS } from '../../repositories/types';
 
 @controller('/sassin')
 export class SassinController implements interfaces.Controller {
-  private sassinAdapter: any;
-
   constructor(
     @inject(BUS_SYMBOLS.Bus) private readonly bus: Bus,
+    @inject(ADAPTERS.Sassin)
+    private readonly adapter: SassinAdapter,
   ) {
-    // TODO: add dependency container
-    const sassinApi = new SassinApi(
-      '5f487b6001d41816ccfbc7e8',
-      'dd488516cd84484f9a511c9e5f9db4a3',
-    );
-    this.sassinAdapter = new SassinAdapter(sassinApi);
   }
 
   // TODO: add 'device offline' procesing
@@ -40,7 +35,7 @@ export class SassinController implements interfaces.Controller {
       deviceUuid: req.body.uuidDevice,
       lineNumber: req.body.lineNumber,
       state: req.body.active,
-      timestamp: new Date(),
+      timestamp: moment().unix(),
     };
     try {
       await this.bus.send(new SassinChangeLineState(sassinChangeLineStateCommand));
@@ -57,7 +52,7 @@ export class SassinController implements interfaces.Controller {
     @response() res: express.Response,
   ) {
     try {
-      const devices = await this.sassinAdapter.getDevices();
+      const devices = await this.adapter.getDevices();
       res.status(200).send(devices);
     } catch (ex) {
       console.log(ex);
@@ -72,7 +67,7 @@ export class SassinController implements interfaces.Controller {
     @response() res: express.Response,
   ) {
     try {
-      const deviceInfo = await this.sassinAdapter.getDeviceInfo(serialNumber);
+      const deviceInfo = await this.adapter.getDeviceInfo(serialNumber);
       res.status(200).send(deviceInfo);
     } catch (ex) {
       console.log(ex);
@@ -95,7 +90,7 @@ export class SassinController implements interfaces.Controller {
     }
 
     try {
-      const deviceInfo = await this.sassinAdapter
+      const deviceInfo = await this.adapter
         .getMeasurementsTimestampRange(
           deviceUuid,
           Number(timestampFrom),

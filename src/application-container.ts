@@ -6,6 +6,7 @@ import { BusWorkflowModule } from '@node-ts/bus-workflow';
 import { HandlersModule } from './handlers/handlers-module';
 import 'reflect-metadata';
 import TypeormModule from './modules/typeorm-module';
+import ApiModule from './modules/api-module';
 
 export class ApplicationContainer extends Container {
   constructor() {
@@ -17,6 +18,7 @@ export class ApplicationContainer extends Container {
       new BusWorkflowModule(),
       new HandlersModule(),
       TypeormModule,
+      ApiModule,
     );
   }
 }
