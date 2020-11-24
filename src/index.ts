@@ -10,7 +10,7 @@ import { LoggerConfiguration } from './configuration';
 import { ApplicationContainer } from './application-container';
 
 import './endpoints/command/ping';
-import './endpoints/command/macroscop';
+import './endpoints/event/old.macroscop';
 import './endpoints/command/sputnik';
 import './endpoints/command/sassin';
 import './endpoints/command/sigur';

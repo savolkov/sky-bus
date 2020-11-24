@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "5469e295-b243-4119-a3b1-3473e08a8d34",
+		"_postman_id": "9a91df8f-4537-4d91-8944-a215acfbf692",
 		"name": "SKY: Bus",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -183,6 +183,72 @@
 					],
 					"protocolProfileBehavior": {},
 					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "macroscop",
+			"item": [
+				{
+					"name": "get cameras",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"relayNumber\": 2,\n    \"relayState\": true,\n    \"description\": \"test description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sky_bus_url}}/macroscop/cameras",
+							"host": [
+								"{{sky_bus_url}}"
+							],
+							"path": [
+								"macroscop",
+								"cameras"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get camera info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"relayNumber\": 2,\n    \"relayState\": true,\n    \"description\": \"test description\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{sky_bus_url}}/macroscop/cameras",
+							"host": [
+								"{{sky_bus_url}}"
+							],
+							"path": [
+								"macroscop",
+								"cameras"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
