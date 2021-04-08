@@ -10,17 +10,20 @@ import { LoggerConfiguration } from './configuration';
 import { ApplicationContainer } from './application-container';
 
 import './endpoints/command/ping';
-import './endpoints/event/old.macroscop';
+import './endpoints/event/macroscop';
 import './endpoints/command/sputnik';
 import './endpoints/command/sassin';
+import './endpoints/event/sputnik.controller';
 import './endpoints/command/sigur';
 import './endpoints/event/sigur';
 import './endpoints/command/devline';
+import './endpoints/event/iridium';
 import {
   MacroscopWarningRecievedHandler,
 } from './handlers';
 
 import { SputnikOpenDoorHandler } from './handlers/sputnik/openDoor.handler';
+import { SpuntikIntercomCallReceivedHandler } from './handlers/sputnik/intercomCallReceived.handler';
 
 import './endpoints/command/iridium';
 import {
@@ -35,12 +38,14 @@ import { IridiumTestRecievedHandler } from './handlers/iridium/iridium-test-reci
 import { SassinChangeLineStateHandler } from './handlers/sassin/changeLineState.handler';
 import { SassinLineStateChangedHandler } from './handlers/sassin/lineStateChanged.handler';
 import { SassinLineStateChangeErrorHandler } from './handlers/sassin/lineStateChangeError.handler';
+import { MacroscopWarningRecordedHandler } from './handlers/macroscop/macroscopWarningRecorded.handler';
 
 import {
   SigurGatewayAccessDeniedHandler,
   SigurGatewayAccessRequiredHandler,
   SigurGatewayPassedHandler,
 } from './handlers/sigur';
+import { IridiumDeviceConnectionChangedHandler } from './handlers/iridium/iridiumDeviceConnectionChanged.handler';
 
 const container = new ApplicationContainer();
 container.rebind(WINSTON_SYMBOLS.WinstonConfiguration).to(LoggerConfiguration);
@@ -70,7 +75,9 @@ async function initialize(): Promise<void> {
   const bootstrap = container.get<ApplicationBootstrap>(BUS_SYMBOLS.ApplicationBootstrap);
   bootstrap.registerHandler(MacroscopWarningRecievedHandler);
   bootstrap.registerHandler(SputnikOpenDoorHandler);
+  bootstrap.registerHandler(SpuntikIntercomCallReceivedHandler);
   bootstrap.registerHandler(IridiumTestRecievedHandler);
+  bootstrap.registerHandler(IridiumDeviceConnectionChangedHandler);
   bootstrap.registerHandler(SassinChangeLineStateHandler);
   bootstrap.registerHandler(SassinLineStateChangedHandler);
   bootstrap.registerHandler(SassinLineStateChangeErrorHandler);
@@ -78,6 +85,7 @@ async function initialize(): Promise<void> {
   bootstrap.registerHandler(SigurGatewayAccessDeniedHandler);
   bootstrap.registerHandler(SigurGatewayAccessRequiredHandler);
   bootstrap.registerHandler(SigurGatewayPassedHandler);
+  bootstrap.registerHandler(MacroscopWarningRecordedHandler);
 
   await bootstrap.initialize(container);
 }

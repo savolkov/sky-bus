@@ -8,8 +8,8 @@ import {
 } from 'inversify-express-utils';
 import { inject } from 'inversify';
 import { Bus, BUS_SYMBOLS } from '@node-ts/bus-core';
-import { MacroscopWarningRecieved } from '../../messages';
-import { MacroscopWarning } from '../../types/macroscopWarning';
+import { MacroscopWarning } from 'types/macroscopWarning';
+import { MacroscopWarningRecieved } from '../../messages/macroscop/macroscop-warning-recieved.event';
 
 @controller('/macroscop')
 export class MacroscopController implements interfaces.Controller {

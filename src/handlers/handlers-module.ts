@@ -8,12 +8,15 @@ import { IridiumTestRecievedHandler } from './iridium/iridium-test-recieved.hand
 import { SassinChangeLineStateHandler } from './sassin/changeLineState.handler';
 import { SassinLineStateChangedHandler } from './sassin/lineStateChanged.handler';
 import { SassinLineStateChangeErrorHandler } from './sassin/lineStateChangeError.handler';
+import { SpuntikIntercomCallReceivedHandler } from './sputnik/intercomCallReceived.handler';
+import { MacroscopWarningRecordedHandler } from './macroscop/macroscopWarningRecorded.handler';
 
 import {
   SigurGatewayAccessDeniedHandler,
   SigurGatewayAccessRequiredHandler,
   SigurGatewayPassedHandler,
 } from './sigur';
+import { IridiumDeviceConnectionChangedHandler } from './iridium/iridiumDeviceConnectionChanged.handler';
 
 export class HandlersModule extends ContainerModule {
   constructor() {
@@ -23,6 +26,7 @@ export class HandlersModule extends ContainerModule {
       bindLogger(bind, SputnikDoorOpenedHandler);
       bindLogger(bind, SputnikOpenDoorErrorHandler);
       bindLogger(bind, IridiumTestRecievedHandler);
+      bindLogger(bind, IridiumDeviceConnectionChangedHandler);
       bindLogger(bind, SassinChangeLineStateHandler);
       bindLogger(bind, SassinLineStateChangedHandler);
       bindLogger(bind, SassinLineStateChangeErrorHandler);
@@ -30,6 +34,8 @@ export class HandlersModule extends ContainerModule {
       bindLogger(bind, SigurGatewayAccessDeniedHandler);
       bindLogger(bind, SigurGatewayAccessRequiredHandler);
       bindLogger(bind, SigurGatewayPassedHandler);
+      bindLogger(bind, SpuntikIntercomCallReceivedHandler);
+      bindLogger(bind, MacroscopWarningRecordedHandler);
     });
   }
 }
